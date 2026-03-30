@@ -1,0 +1,383 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfdevfinanceus-007"
+		},
+		"ADLS_SQTABLE_PARQUET1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS_SQTABLE_PARQUET1'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+		},
+		"LP_SQLSERVER_LUKUP_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LP_SQLSERVER_LUKUP'"
+		},
+		"LS_ADLS_CSV_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_CSV'"
+		},
+		"LS_ADLS_LOOKUP_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_LOOKUP'"
+		},
+		"LS_ADLS_PARQUET_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_PARQUET'"
+		},
+		"LS_BLOB_CSVOLD_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_CSVOLD'"
+		},
+		"LS_BLOB_EXCEL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_EXCEL'"
+		},
+		"LS_ONPrem_Sqlserver_DW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_ONPrem_Sqlserver_DW'"
+		},
+		"LS_SP_INSERTINPUT_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SP_INSERTINPUT'"
+		},
+		"LS_SQL_ADLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_ADLS'"
+		},
+		"LS_SQL_BLOBCSV_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_BLOBCSV'"
+		},
+		"LS_SQL_BLOB_CSV_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_SQL_BLOB_CSV'"
+		},
+		"LS_SQL_PARQU_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SQL_PARQU'"
+		},
+		"LS_SQL_PARQUET_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SQL_PARQUET'"
+		},
+		"ADLS_SQTABLE_PARQUET1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://keyvaultdata007.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "adfdatabase007.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "testdata007"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin123"
+		},
+		"LP_SQLSERVER_LUKUP_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-A319E5K\\SQLEXPRESS"
+		},
+		"LP_SQLSERVER_LUKUP_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "MigrationProjectDB"
+		},
+		"LP_SQLSERVER_LUKUP_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_ADLS_CSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"LS_ADLS_LOOKUP_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"LS_ADLS_PARQUET_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"LS_ONPrem_Sqlserver_DW_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-A319E5K\\SQLEXPRESS"
+		},
+		"LS_ONPrem_Sqlserver_DW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "MigrationProjectDB"
+		},
+		"LS_ONPrem_Sqlserver_DW_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SP_INSERTINPUT_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-A319E5K\\SQLEXPRESS"
+		},
+		"LS_SP_INSERTINPUT_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "car_sales_db"
+		},
+		"LS_SP_INSERTINPUT_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SQL_ADLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-A319E5K\\SQLEXPRESS"
+		},
+		"LS_SQL_ADLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "car_sales_db"
+		},
+		"LS_SQL_ADLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SQL_BLOBCSV_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-A319E5K\\SQLEXPRESS"
+		},
+		"LS_SQL_BLOBCSV_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "car_sales_db"
+		},
+		"LS_SQL_BLOBCSV_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SQL_PARQU_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"LS_SQL_PARQUET_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevfinanceus07.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfdevfinanceus-007_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLS_SQTABLE_PARQUET1_accountKey": {
+						"value": "[parameters('ADLS_SQTABLE_PARQUET1_accountKey')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"AzureDataLakeStorage2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					},
+					"LS_ADLS_CSV_accountKey": {
+						"value": "[parameters('LS_ADLS_CSV_accountKey')]"
+					},
+					"LS_ADLS_LOOKUP_accountKey": {
+						"value": "[parameters('LS_ADLS_LOOKUP_accountKey')]"
+					},
+					"LS_ADLS_PARQUET_accountKey": {
+						"value": "[parameters('LS_ADLS_PARQUET_accountKey')]"
+					},
+					"LS_BLOB_CSVOLD_connectionString": {
+						"value": "[parameters('LS_BLOB_CSVOLD_connectionString')]"
+					},
+					"LS_BLOB_EXCEL_connectionString": {
+						"value": "[parameters('LS_BLOB_EXCEL_connectionString')]"
+					},
+					"LS_SQL_BLOB_CSV_connectionString": {
+						"value": "[parameters('LS_SQL_BLOB_CSV_connectionString')]"
+					},
+					"LS_SQL_PARQU_accountKey": {
+						"value": "[parameters('LS_SQL_PARQU_accountKey')]"
+					},
+					"LS_SQL_PARQUET_accountKey": {
+						"value": "[parameters('LS_SQL_PARQUET_accountKey')]"
+					},
+					"ADLS_SQTABLE_PARQUET1_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_SQTABLE_PARQUET1_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"LS_ADLS_CSV_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_CSV_properties_typeProperties_url')]"
+					},
+					"LS_ADLS_LOOKUP_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_LOOKUP_properties_typeProperties_url')]"
+					},
+					"LS_ADLS_PARQUET_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_PARQUET_properties_typeProperties_url')]"
+					},
+					"LS_SQL_PARQU_properties_typeProperties_url": {
+						"value": "[parameters('LS_SQL_PARQU_properties_typeProperties_url')]"
+					},
+					"LS_SQL_PARQUET_properties_typeProperties_url": {
+						"value": "[parameters('LS_SQL_PARQUET_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adfdevfinanceus-007_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LP_SQLSERVER_LUKUP_password": {
+						"value": "[parameters('LP_SQLSERVER_LUKUP_password')]"
+					},
+					"LS_ONPrem_Sqlserver_DW_password": {
+						"value": "[parameters('LS_ONPrem_Sqlserver_DW_password')]"
+					},
+					"LS_SP_INSERTINPUT_password": {
+						"value": "[parameters('LS_SP_INSERTINPUT_password')]"
+					},
+					"LS_SQL_ADLS_password": {
+						"value": "[parameters('LS_SQL_ADLS_password')]"
+					},
+					"LS_SQL_BLOBCSV_password": {
+						"value": "[parameters('LS_SQL_BLOBCSV_password')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"LP_SQLSERVER_LUKUP_properties_typeProperties_server": {
+						"value": "[parameters('LP_SQLSERVER_LUKUP_properties_typeProperties_server')]"
+					},
+					"LP_SQLSERVER_LUKUP_properties_typeProperties_database": {
+						"value": "[parameters('LP_SQLSERVER_LUKUP_properties_typeProperties_database')]"
+					},
+					"LP_SQLSERVER_LUKUP_properties_typeProperties_userName": {
+						"value": "[parameters('LP_SQLSERVER_LUKUP_properties_typeProperties_userName')]"
+					},
+					"LS_ONPrem_Sqlserver_DW_properties_typeProperties_server": {
+						"value": "[parameters('LS_ONPrem_Sqlserver_DW_properties_typeProperties_server')]"
+					},
+					"LS_ONPrem_Sqlserver_DW_properties_typeProperties_database": {
+						"value": "[parameters('LS_ONPrem_Sqlserver_DW_properties_typeProperties_database')]"
+					},
+					"LS_ONPrem_Sqlserver_DW_properties_typeProperties_userName": {
+						"value": "[parameters('LS_ONPrem_Sqlserver_DW_properties_typeProperties_userName')]"
+					},
+					"LS_SP_INSERTINPUT_properties_typeProperties_server": {
+						"value": "[parameters('LS_SP_INSERTINPUT_properties_typeProperties_server')]"
+					},
+					"LS_SP_INSERTINPUT_properties_typeProperties_database": {
+						"value": "[parameters('LS_SP_INSERTINPUT_properties_typeProperties_database')]"
+					},
+					"LS_SP_INSERTINPUT_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SP_INSERTINPUT_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_ADLS_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_ADLS_properties_typeProperties_server')]"
+					},
+					"LS_SQL_ADLS_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_ADLS_properties_typeProperties_database')]"
+					},
+					"LS_SQL_ADLS_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_ADLS_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_BLOBCSV_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_BLOBCSV_properties_typeProperties_server')]"
+					},
+					"LS_SQL_BLOBCSV_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_BLOBCSV_properties_typeProperties_database')]"
+					},
+					"LS_SQL_BLOBCSV_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_BLOBCSV_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdevfinanceus-007_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adfdevfinanceus-007_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdevfinanceus-007_ArmTemplate_1')]"
+			]
+		}
+	]
+}
