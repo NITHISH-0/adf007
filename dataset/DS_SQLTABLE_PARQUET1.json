@@ -1,0 +1,54 @@
+{
+	"name": "DS_SQLTABLE_PARQUET1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_SQTABLE_PARQUET1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Table_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().Table_Name,'_',formatDateTime(utcNow(),'yyyyMMddHHmmss'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().Table_Name,'/',formatDateTime(utcNow(),'yyyy/MM/dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "inputloic"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "car_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "brand",
+				"type": "UTF8"
+			},
+			{
+				"name": "model",
+				"type": "UTF8"
+			},
+			{
+				"name": "fuel_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "price",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
